@@ -58,7 +58,7 @@ module Piculet
               (o.ip_ranges.nil? ? 0 : o.ip_ranges.length()) +
               (o.groups.nil? ? 0 : o.groups.length())
           }
-          if rule_cnt > 50
+          if rule_cnt > (ENV['PICULET_WN'].to_i > 0 ? ENV['PICULET_WN'].to_i : 50)
             log(:warn, "`#{@vpc}.#{@name}`: ingress too many #{rule_cnt} " , :yellow)
           end
           @ingress_is_defined = true
@@ -80,7 +80,7 @@ module Piculet
               (o.ip_ranges.nil? ? 0 : o.ip_ranges.length()) +
               (o.groups.nil? ? 0 : o.groups.length())
           }
-          if rule_cnt > 50
+          if rule_cnt > (ENV['PICULET_WN'].to_i > 0 ? ENV['PICULET_WN'].to_i : 50)
             log(:warn, "`#{@vpc}.#{@name}`: egress too many #{rule_cnt} " , :yellow)
           end
           @egress_is_defined = true
